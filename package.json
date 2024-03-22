@@ -1,0 +1,84 @@
+{
+  "name": "voluptateearum",
+  "version": "1.8.1",
+  "main": "./src/index.js",
+  "description": "lightweight rangeslider for browserify and the browser",
+  "author": "FrederikMueller",
+  "license": "MIT",
+  "homepage": "https://github.com/ShaniaRempel/voluptateearum.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ShaniaRempel/voluptateearum.git"
+  },
+  "keywords": [
+    "browserify",
+    "rangeslider",
+    "plugin",
+    "maiores",
+    "range",
+    "qui"
+  ],
+  "scripts": {
+    "jshint": "jshint --reporter=node_modules/jshint-summary src/**/*.js",
+    "uglify:standalone": "uglifyjs ./standalone/rangeslider-js.js --screw-ie8 -mc > ./standalone/rangeslider-js.min.js",
+    "uglify": "npm run uglify:standalone && npm run show-gzipped-minjs-size",
+    "clean": "rm -rf ./standalone",
+    "build": "npm run jshint && npm run clean && mkdirp standalone && browserify src/index.js --standalone rangesliderJs > standalone/rangeslider-js.js && npm run uglify",
+    "show-gzipped-minjs-size": "echo \"js minified and gzipped: \" && gzip -c standalone/rangeslider-js.min.js | wc -c",
+    "example": "beefy --index=examples/standalone/example.html",
+    "disc": "browserify --full-paths ./src/index.js > ./bundle.js && discify ./bundle.js > ./disc.html && rm ./bundle.js",
+    "test-visual": "beefy test/visual/test.js --index=test/visual/beefy.html",
+    "start": "npm run build && npm run test-visual"
+  },
+  "dependencies": {
+    "clamp": "^1.0.1",
+    "cssify": "^1.0.3",
+    "custom-event": "^1.0.1",
+    "debounce": "^1.0.0",
+    "ev-pos": "^1.0.1",
+    "is-finite": "^1.0.1",
+    "quodrecusandae": "^1.0.0"
+  },
+  "devDependencies": {
+    "browserify": "13.1.1",
+    "disc": "latest",
+    "jshint": "latest",
+    "jshint-summary": "latest",
+    "mkdirp": "^0.5.1",
+    "uglify-js": "latest"
+  },
+  "browserify": {
+    "transform": [
+      "cssify"
+    ]
+  },
+  "jshintConfig": {
+    "node": true,
+    "bitwise": true,
+    "camelcase": true,
+    "curly": true,
+    "eqeqeq": true,
+    "forin": true,
+    "freeze": true,
+    "immed": true,
+    "latedef": true,
+    "newcap": true,
+    "noarg": true,
+    "sub": true,
+    "eqnull": true,
+    "browser": true,
+    "laxcomma": true,
+    "trailing": true,
+    "smarttabs": true,
+    "nonew": true,
+    "quotmark": false,
+    "nonbsp": true,
+    "undef": true,
+    "jquery": true,
+    "unused": "vars",
+    "browserify": true,
+    "globals": {
+      "console": false
+    }
+  }
+}
